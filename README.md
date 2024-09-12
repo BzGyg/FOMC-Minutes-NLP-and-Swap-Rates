@@ -7,13 +7,8 @@ This project leverages Natural Language Processing (NLP) to analyze the impact o
 ## Requirements
 
 To run this project, you will need:
-
-- MATLAB release R2024a or newer
-- **Deep Learning Toolbox™**
-- **Financial Toolbox™**
-- **Optimization Toolbox™**
-- **Statistics and Machine Learning Toolbox™**
-- **Model Transformer App™**
+- [MATLAB](https://www.mathworks.com/products/matlab.html) for the computational environment.
+- [FinBERT for MATLAB](https://github.com/matlab-deep-learning/transformer-models) for sentiment analysis.
 
 ## Data Sources
 
@@ -48,17 +43,8 @@ If you would like to contribute to this project, please:
 5. Push to the branch (`git push origin feature-branch`).
 6. Create a Pull Request.
 
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-## Acknowledgements
-
-- [FinBERT](https://arxiv.org/abs/1908.10063) for sentiment analysis.
-- [MATLAB](https://www.mathworks.com/products/matlab.html) for the computational environment.
-
 ## Contact
 
 For questions or suggestions, please contact:
 
-- Email: [youliguo0530@gmail.com](mailto:youliguo0530@gmail.com)
+- Email: [Youli Guo](mailto:youliguo0530@gmail.com)
