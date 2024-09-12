@@ -27,7 +27,7 @@ This project leverages Natural Language Processing (NLP) to analyze the impact o
 
 ## Our Results
 
-# Daily
+### Daily
 
 Dmdl_1 = 
 Linear regression model:
@@ -62,7 +62,7 @@ Estimated Coefficients:
 Number of observations: 5993, Error degrees of freedom: 5989
 Root Mean Squared Error: 0.391
 
-# Weekly
+### Weekly
 
 Wmdl_1 = 
 Linear regression model:
@@ -97,7 +97,7 @@ Estimated Coefficients:
 Number of observations: 1023, Error degrees of freedom: 1019
 Root Mean Squared Error: 0.109
 
-# Comparison
+### Comparison
 
 Adjusted R-squared : 
 
