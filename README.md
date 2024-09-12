@@ -130,4 +130,4 @@ This project leverages Natural Language Processing (NLP) to analyze the impact o
 
 For any suggestions, please contact:
 
-- Email: [Youli Guo](mailto:youliguo0530@gmail.com); [Rijul Gupta]; [Xidan Liang].
+- Email: [Rijul Gupta]; [Youli Guo](mailto:youliguo0530@gmail.com); [Xidan Liang].
