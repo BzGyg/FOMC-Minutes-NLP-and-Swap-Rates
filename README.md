@@ -13,7 +13,7 @@ This project leverages Natural Language Processing (NLP) to analyze the impact o
 ## Data Sources
 
 - **Swap Rate Data**: Obtained from the [Federal Reserve Bank St.Louis](https://fred.stlouisfed.org/categories/32299) and .[Bloomberg](https://www.bloomberg.com/professional/products/bloomberg-terminal/).
-- **FOMC Data**: Obtain from the [FOMC Calendar](https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm) and .[FOMC History](https://www.federalreserve.gov/monetarypolicy/fomc_historical_year.htm).
+- **FOMC Data**: Obtain from the [FOMC Calendar](https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm) and [FOMC History](https://www.federalreserve.gov/monetarypolicy/fomc_historical_year.htm).
 
 ## File Descriptions
 
