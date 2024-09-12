@@ -125,9 +125,3 @@ This project leverages Natural Language Processing (NLP) to analyze the impact o
 - **Weekly Models:**  
   F-Statistic = 21.4223  
   P-Value = 4.16e-06
-
-## Contact
-
-For any suggestions, please contact:
-
-- Email: [Rijul Gupta]; [Youli Guo](mailto:youliguo0530@gmail.com); [Xidan Liang].
