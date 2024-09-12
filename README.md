@@ -9,6 +9,7 @@ This project leverages Natural Language Processing (NLP) to analyze the impact o
 - [MATLAB](https://www.mathworks.com/products/matlab.html) for the computational environment.
 - [FinBERT for MATLAB](https://github.com/matlab-deep-learning/transformer-models) for sentiment analysis.
 - Place the data files (such as `DSWP2.csv`, `WSWP2.csv`, `swap-libor.xlsx`) and FinBERT package folder in your directory.
+- Use `scores.mat` if it is needed.
 
 ## Data Sources
 
