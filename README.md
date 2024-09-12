@@ -23,7 +23,7 @@ This project leverages Natural Language Processing (NLP) to analyze the impact o
 - **`Scores.mat`**: Sentiment scores generated from Mar 2000 to Jul 2024.
 - **`DSWP2.csv & WSWP2.csv`**: 2-year daily & weekly swap rates.
 - **`swap-libor.xlsx`**: complementary files for 2-year swap rates, daily basis.
-- **`DVIX.csv & WVIX.csv`**: 2-year daily & weekly CBOE Volatility Index (VIX rates).
+- **`DVIX.csv & WVIX.csv`**: daily & weekly CBOE Volatility Index (VIX rates).
 
 ## Contact
 
