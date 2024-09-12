@@ -8,13 +8,14 @@ This project leverages Natural Language Processing (NLP) to analyze the impact o
 
 - [MATLAB](https://www.mathworks.com/products/matlab.html) for the computational environment.
 - [FinBERT for MATLAB](https://github.com/matlab-deep-learning/transformer-models) for sentiment analysis.
-- Place the data files (such as `DSWP2.csv`, `WSWP2.csv`, `swap-libor.xlsx`) and FinBERT package folder in your directory.
+- Place the data files and FinBERT package folder in your directory.
 - Run `Project_Final.mlx`, use `scores.mat` if it is needed.
 
 ## Data Sources
 
-- **Swap Rate Data**: Obtained from the [Federal Reserve Bank St.Louis](https://fred.stlouisfed.org/categories/32299) and [Bloomberg](https://www.bloomberg.com/professional/products/bloomberg-terminal/).
-- **FOMC Data**: Obtain from the [FOMC Calendar](https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm) and [FOMC History](https://www.federalreserve.gov/monetarypolicy/fomc_historical_year.htm).
+- **Swap Rate Data**: Obtained from [Federal Reserve Bank St.Louis](https://fred.stlouisfed.org/categories/32299) and [Bloomberg](https://www.bloomberg.com/professional/products/bloomberg-terminal/).
+- **FOMC Data**: Obtain from [FOMC Calendar](https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm) and [FOMC History](https://www.federalreserve.gov/monetarypolicy/fomc_historical_year.htm).
+- **VIX Rate Data**: Obain from [Yahoo Finance](https://finance.yahoo.com/quote/%5EVIX/history/).
 
 ## File Descriptions
 
@@ -22,6 +23,7 @@ This project leverages Natural Language Processing (NLP) to analyze the impact o
 - **`Scores.mat`**: Sentiment scores generated from Mar 2000 to Jul 2024.
 - **`DSWP2.csv & WSWP2.csv`**: 2-year daily & weekly swap rates.
 - **`swap-libor.xlsx`**: complementary files for 2-year swap rates, daily basis.
+- **`DVIX.csv & WVIX.csv`**: 2-year daily & weekly CBOE Volatility Index (VIX rates).
 
 ## Contact
 
