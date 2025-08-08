@@ -113,8 +113,8 @@ This project leverages Natural Language Processing (NLP) to analyze the impact o
 |---------------------------------------|--------------------|
 | **Daily Models w/o Sentiment Scores** | 0.94689            |
 | **Daily Models w/ Sentiment Scores**  | 0.94706            |
-| **Weekly Models w/o Sentiment Scores**| 0.99602            |
-| **Weekly Models w/ Sentiment Scores** | 0.9961             |
+| **Weekly Models w/o Sentiment Scores**| 0.95602            |
+| **Weekly Models w/ Sentiment Scores** | 0.9561             |
 
 ### F-Test Results
 
