@@ -6,7 +6,7 @@ This project leverages Natural Language Processing (NLP) to analyze the impact o
 
 ## Technical Details
 
-- **`Project_Final.ipynb`** / **`Project_Final.pdf`**: Project Report.
+- **`Project_Final.ipynb`** / **`Project_Final.pdf`**: Printed version of **`Project_Final.mlx`**, serving as project Report.
 - **`Project_Final.mlx`**: Generates sentiment scores, provides regression analysis and model comparison.
 
 ## Requirements
