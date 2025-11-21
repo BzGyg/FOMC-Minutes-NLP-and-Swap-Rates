@@ -4,6 +4,11 @@
 
 This project leverages Natural Language Processing (NLP) to analyze the impact of Federal Open Market Committee (FOMC) statements on swap rates. In our example, we generate sentiment scores using pre-trained FinBERT model and integrate them, along with VIX rates and historical federal swap rates, into a regression model to predict 2-year federal swap rates for the next term.
 
+## Technical Details
+
+- **`Project_Final.pdf`**: Project Report.
+- **`Project_Final.mlx`**: Generates sentiment scores, provides regression analysis and model comparison.
+
 ## Requirements
 
 - [MATLAB](https://www.mathworks.com/products/matlab.html) for the computational environment.
@@ -17,9 +22,8 @@ This project leverages Natural Language Processing (NLP) to analyze the impact o
 - **FOMC Data**: Obtain from [FOMC Calendar](https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm) and [FOMC History](https://www.federalreserve.gov/monetarypolicy/fomc_historical_year.htm).
 - **VIX Rate Data**: Obain from [Yahoo Finance](https://finance.yahoo.com/quote/%5EVIX/history/).
 
-## File Descriptions
+## Data Files
 
-- **`Project_Final.mlx`**: Generates sentiment scores, provides regression analysis and model comparison.
 - **`Scores.mat`**: Sentiment scores with corresponding dates generated from Mar 2000 to Jul 2024.
 - **`DSWP2.csv & WSWP2.csv`**: 2-year daily & weekly swap rates.
 - **`swap-libor.xlsx`**: Complementary files for 2-year swap rates, daily basis.
