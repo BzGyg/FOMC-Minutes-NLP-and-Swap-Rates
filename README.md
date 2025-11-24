@@ -18,14 +18,14 @@ This project leverages Natural Language Processing (NLP) to analyze the impact o
 
 - **Swap Rate Data**: Obtained from [Federal Reserve Bank St.Louis](https://fred.stlouisfed.org/categories/32299) and [Bloomberg](https://www.bloomberg.com/professional/products/bloomberg-terminal/).
 - **FOMC Data**: Obtain from [FOMC Calendar](https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm) and [FOMC History](https://www.federalreserve.gov/monetarypolicy/fomc_historical_year.htm).
-- **VIX Rate Data**: Obain from [Yahoo Finance](https://finance.yahoo.com/quote/%5EVIX/history/).
+- **CBOE Volatility Index (VIX rates)**: Obain from [Yahoo Finance](https://finance.yahoo.com/quote/%5EVIX/history/).
 
 ## Data Files
 
 - **`Scores.mat`**: Sentiment scores with corresponding dates generated from Mar 2000 to Jul 2024.
 - **`DSWP2.csv & WSWP2.csv`**: 2-year daily & weekly swap rates.
 - **`swap-libor.xlsx`**: Complementary files for 2-year swap rates, daily basis.
-- **`DVIX.csv & WVIX.csv`**: Daily & weekly CBOE Volatility Index (VIX rates).
+- **`DVIX.csv & WVIX.csv`**: Daily & weekly VIX.
 
 ## Methodology
 
