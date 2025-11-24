@@ -4,10 +4,61 @@
 
 This project leverages Natural Language Processing (NLP) to analyze the impact of Federal Open Market Committee (FOMC) statements on swap rates. In our example, we generate sentiment scores using pre-trained FinBERT model and integrate them, along with VIX rates and historical federal swap rates, into a regression model to predict 2-year federal swap rates for the next term.
 
-## Technical Details
-
 - **`Project_Final.ipynb`** / **`Project_Final.pdf`**: Printed version of **`Project_Final.mlx`**, serving as the project Report.
 - **`Project_Final.mlx`**: Generates sentiment scores, provides regression analysis and model comparison.
+
+## Methodology
+
+### 1. Data Collection & Preprocessing
+
+**FOMC Minutes Extraction:**
+- Web scraping from Federal Reserve websites covering March 2000 to July 2024
+- HTML parsing using MATLAB's `htmlTree` and `extractHTMLText` functions
+- Text cleaning using signal phrases to isolate economic/financial discussions:
+  - **Start signals:** "The information reviewed/provided/received/available...", "Staff Review of the Economic Situation"
+  - **End signals:** "At the conclusion of...", "Committee Policy Action", "discussion of monetary policy"
+- Filtering paragraphs with length > 100 characters to remove noise
+
+**Swap Rate Data Merging:**
+- Combining two data sources (Federal Reserve St. Louis + Bloomberg) with different coverage periods
+- Missing value imputation using k-nearest neighbors (`fillmissing` with KNN, k=5)
+
+### 2. Sentiment Analysis
+
+**Model:** FinBERT (Financial Domain BERT)
+- Pre-trained transformer model specialized for financial text sentiment classification
+- Categories: Positive, Neutral, Negative
+- Input: Cleaned and rejoined FOMC minutes text
+- Output: Aggregated sentiment scores per document (sum of sentence-level scores)
+
+### 3. Feature Engineering
+
+| Feature | Description | Source |
+|---------|-------------|--------|
+| `Future_Swap_Rate` | Target variable (next period 2Y swap rate) | Fed St. Louis / Bloomberg |
+| `Current_Swap_Rate` | Latest available swap rate before prediction date | Fed St. Louis / Bloomberg |
+| `Sentiment_Score` | FinBERT-derived score from FOMC minutes | Computed via FinBERT |
+| `Latest_VIX_Rate` | Most recent VIX index value | Yahoo Finance |
+| `Second_Latest_VIX_Rate` | Previous period VIX index value | Yahoo Finance |
+
+**Temporal Alignment:**
+- Forward-filling applied to match sentiment scores with higher-frequency rate data
+- Both daily and weekly frequencies analyzed separately
+
+### 4. Regression Analysis
+
+**Model Specification (no intercept):**
+
+**Model 1 (Baseline):**
+$$\text{Future\_Swap\_Rate} = \beta_1 \cdot \text{Current\_Swap\_Rate} + \beta_2 \cdot \text{VIX}_t + \beta_3 \cdot \text{VIX}_{t-1} + \epsilon$$
+
+**Model 2 (With Sentiment):**
+$$\text{Future\_Swap\_Rate} = \beta_1 \cdot \text{Current\_Swap\_Rate} + \beta_2 \cdot \text{VIX}_t + \beta_3 \cdot \text{VIX}_{t-1} + \beta_4 \cdot \text{Sentiment} + \epsilon$$
+
+**Model Comparison:**
+- Adjusted R² comparison between nested models
+- F-test for statistical significance of sentiment score contribution:
+$$F = \frac{(SSE_1 - SSE_2) / (df_1 - df_2)}{SSE_2 / df_2}$$
 
 ## Requirements
 
@@ -29,17 +80,11 @@ This project leverages Natural Language Processing (NLP) to analyze the impact o
 - **`swap-libor.xlsx`**: Complementary files for 2-year swap rates, daily basis.
 - **`DVIX.csv & WVIX.csv`**: Daily & weekly CBOE Volatility Index (VIX rates).
 
-## Our Results
+## Results
 
 ### Daily Models
 
-#### Dmdl_1
-**Linear Regression Model**  
-*Dependent Variable:* Future_Swap_Rate  
-*Independent Variables:*  
-- Current_Swap_Rate  
-- Latest_VIX_Rate  
-- Second_Latest_VIX_Rate
+#### Dmdl_1 (Baseline)
 
 | Variable                 | Estimate | SE       | t-Stat  | p-Value      |
 |--------------------------|----------|----------|---------|--------------|
@@ -47,18 +92,9 @@ This project leverages Natural Language Processing (NLP) to analyze the impact o
 | **Latest_VIX_Rate**       | -0.0067  | 0.0016401| -4.08   | 4.51e-05     |
 | **Second_Latest_VIX_Rate**| 0.00837  | 0.0016365| 5.11    | 3.25e-07     |
 
-- **Number of Observations:** 5993  
-- **Degrees of Freedom:** 5990  
-- **Root Mean Squared Error:** 0.392
+- **Observations:** 5993 | **RMSE:** 0.392
 
-#### Dmdl_2
-**Linear Regression Model**  
-*Dependent Variable:* Future_Swap_Rate  
-*Independent Variables:*  
-- Sentiment_Score  
-- Current_Swap_Rate  
-- Latest_VIX_Rate  
-- Second_Latest_VIX_Rate
+#### Dmdl_2 (With Sentiment)
 
 | Variable                 | Estimate | SE       | t-Stat  | p-Value      |
 |--------------------------|----------|----------|---------|--------------|
@@ -67,19 +103,11 @@ This project leverages Natural Language Processing (NLP) to analyze the impact o
 | **Latest_VIX_Rate**       | -0.0071  | 0.00164  | -4.33   | 1.51e-05     |
 | **Second_Latest_VIX_Rate**| 0.00793  | 0.0016368| 4.85    | 1.29e-06     |
 
-- **Number of Observations:** 5993  
-- **Degrees of Freedom:** 5989  
-- **Root Mean Squared Error:** 0.391
+- **Observations:** 5993 | **RMSE:** 0.391
 
 ### Weekly Models
 
-#### Wmdl_1
-**Linear Regression Model**  
-*Dependent Variable:* Future_Swap_Rate  
-*Independent Variables:*  
-- Current_Swap_Rate  
-- Latest_VIX_Rate  
-- Second_Latest_VIX_Rate
+#### Wmdl_1 (Baseline)
 
 | Variable                 | Estimate | SE       | t-Stat  | p-Value      |
 |--------------------------|----------|----------|---------|--------------|
@@ -87,18 +115,9 @@ This project leverages Natural Language Processing (NLP) to analyze the impact o
 | **Latest_VIX_Rate**       | -0.00617 | 0.0010584| -5.83   | 7.47e-09     |
 | **Second_Latest_VIX_Rate**| 0.00557  | 0.0010579| 5.26    | 1.72e-07     |
 
-- **Number of Observations:** 1023  
-- **Degrees of Freedom:** 1020  
-- **Root Mean Squared Error:** 0.11
+- **Observations:** 1023 | **RMSE:** 0.11
 
-#### Wmdl_2
-**Linear Regression Model**  
-*Dependent Variable:* Future_Swap_Rate  
-*Independent Variables:*  
-- Sentiment_Score  
-- Current_Swap_Rate  
-- Latest_VIX_Rate  
-- Second_Latest_VIX_Rate
+#### Wmdl_2 (With Sentiment)
 
 | Variable                 | Estimate | SE       | t-Stat  | p-Value      |
 |--------------------------|----------|----------|---------|--------------|
@@ -107,25 +126,30 @@ This project leverages Natural Language Processing (NLP) to analyze the impact o
 | **Latest_VIX_Rate**       | -0.00648 | 0.0010501| -6.17   | 9.70e-10     |
 | **Second_Latest_VIX_Rate**| 0.00539  | 0.0010481| 5.15    | 3.18e-07     |
 
-- **Number of Observations:** 1023  
-- **Degrees of Freedom:** 1019  
-- **Root Mean Squared Error:** 0.109
+- **Observations:** 1023 | **RMSE:** 0.109
 
 ### Model Comparison
 
-| Models                                | Adjusted R-Squared |
-|---------------------------------------|--------------------|
-| **Daily Models w/o Sentiment Scores** | 0.94689            |
-| **Daily Models w/ Sentiment Scores**  | 0.94706            |
-| **Weekly Models w/o Sentiment Scores**| 0.95602            |
-| **Weekly Models w/ Sentiment Scores** | 0.95610            |
+| Models                                | Adjusted R² |
+|---------------------------------------|-------------|
+| Daily Models w/o Sentiment Scores     | 0.94689     |
+| **Daily Models w/ Sentiment Scores**  | **0.94706** |
+| Weekly Models w/o Sentiment Scores    | 0.95602     |
+| **Weekly Models w/ Sentiment Scores** | **0.95610** |
 
 ### F-Test Results
 
-- **Daily Models:**  
-  F-Statistic = 20.1266  
-  P-Value = 7.38e-06  
+| Comparison | F-Statistic | P-Value | Conclusion |
+|------------|-------------|---------|------------|
+| Daily Models | 20.1266 | 7.38e-06 | Significant |
+| Weekly Models | 21.4223 | 4.16e-06 | Significant |
 
-- **Weekly Models:**  
-  F-Statistic = 21.4223  
-  P-Value = 4.16e-06
+## Conclusion
+
+The results demonstrate that sentiment scores derived from FOMC minutes using FinBERT significantly improve the predictive power of swap rate models. Both daily and weekly models show:
+
+1. **Higher Adjusted R²** when sentiment scores are included
+2. **Statistically significant F-test results** (p < 0.001), confirming that the sentiment variable adds meaningful explanatory power
+3. **Positive sentiment coefficients**, indicating that more positive FOMC sentiment is associated with higher future swap rates
+
+These findings suggest that NLP-based analysis of central bank communications can provide valuable signals for financial market predictions.
