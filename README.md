@@ -7,6 +7,26 @@ This project leverages Natural Language Processing (NLP) to analyze the impact o
 - **`Project_Final.ipynb`** / **`Project_Final.pdf`**: Printed version of **`Project_Final.mlx`**, serving as the project Report.
 - **`Project_Final.mlx`**: Generates sentiment scores, provides regression analysis and model comparison.
 
+## Requirements
+
+- [MATLAB](https://www.mathworks.com/products/matlab.html) for the computational environment.
+- [FinBERT for MATLAB](https://github.com/matlab-deep-learning/transformer-models) for sentiment analysis.
+- Place the data files and FinBERT package folder in your directory.
+- Run `Project_Final.mlx`, use `scores.mat` if it is needed.
+
+## Data Sources
+
+- **Swap Rate Data**: Obtained from [Federal Reserve Bank St.Louis](https://fred.stlouisfed.org/categories/32299) and [Bloomberg](https://www.bloomberg.com/professional/products/bloomberg-terminal/).
+- **FOMC Data**: Obtain from [FOMC Calendar](https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm) and [FOMC History](https://www.federalreserve.gov/monetarypolicy/fomc_historical_year.htm).
+- **VIX Rate Data**: Obain from [Yahoo Finance](https://finance.yahoo.com/quote/%5EVIX/history/).
+
+## Data Files
+
+- **`Scores.mat`**: Sentiment scores with corresponding dates generated from Mar 2000 to Jul 2024.
+- **`DSWP2.csv & WSWP2.csv`**: 2-year daily & weekly swap rates.
+- **`swap-libor.xlsx`**: Complementary files for 2-year swap rates, daily basis.
+- **`DVIX.csv & WVIX.csv`**: Daily & weekly CBOE Volatility Index (VIX rates).
+
 ## Methodology
 
 ### 1. Data Collection & Preprocessing
@@ -50,35 +70,24 @@ This project leverages Natural Language Processing (NLP) to analyze the impact o
 **Model Specification (no intercept):**
 
 **Model 1 (Baseline):**
-$$\text{Future\_Swap\_Rate} = \beta_1 \cdot \text{Current\_Swap\_Rate} + \beta_2 \cdot \text{VIX}_t + \beta_3 \cdot \text{VIX}_{t-1} + \epsilon$$
+
+```math
+\text{Future\_Swap\_Rate} = \beta_1 \cdot \text{Current\_Swap\_Rate} + \beta_2 \cdot \text{VIX}_t + \beta_3 \cdot \text{VIX}_{t-1} + \epsilon
+```
 
 **Model 2 (With Sentiment):**
-$$\text{Future\_Swap\_Rate} = \beta_1 \cdot \text{Current\_Swap\_Rate} + \beta_2 \cdot \text{VIX}_t + \beta_3 \cdot \text{VIX}_{t-1} + \beta_4 \cdot \text{Sentiment} + \epsilon$$
+
+```math
+\text{Future\_Swap\_Rate} = \beta_1 \cdot \text{Current\_Swap\_Rate} + \beta_2 \cdot \text{VIX}_t + \beta_3 \cdot \text{VIX}_{t-1} + \beta_4 \cdot \text{Sentiment} + \epsilon
+```
 
 **Model Comparison:**
 - Adjusted R² comparison between nested models
 - F-test for statistical significance of sentiment score contribution:
-$$F = \frac{(SSE_1 - SSE_2) / (df_1 - df_2)}{SSE_2 / df_2}$$
 
-## Requirements
-
-- [MATLAB](https://www.mathworks.com/products/matlab.html) for the computational environment.
-- [FinBERT for MATLAB](https://github.com/matlab-deep-learning/transformer-models) for sentiment analysis.
-- Place the data files and FinBERT package folder in your directory.
-- Run `Project_Final.mlx`, use `scores.mat` if it is needed.
-
-## Data Sources
-
-- **Swap Rate Data**: Obtained from [Federal Reserve Bank St.Louis](https://fred.stlouisfed.org/categories/32299) and [Bloomberg](https://www.bloomberg.com/professional/products/bloomberg-terminal/).
-- **FOMC Data**: Obtain from [FOMC Calendar](https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm) and [FOMC History](https://www.federalreserve.gov/monetarypolicy/fomc_historical_year.htm).
-- **VIX Rate Data**: Obain from [Yahoo Finance](https://finance.yahoo.com/quote/%5EVIX/history/).
-
-## Data Files
-
-- **`Scores.mat`**: Sentiment scores with corresponding dates generated from Mar 2000 to Jul 2024.
-- **`DSWP2.csv & WSWP2.csv`**: 2-year daily & weekly swap rates.
-- **`swap-libor.xlsx`**: Complementary files for 2-year swap rates, daily basis.
-- **`DVIX.csv & WVIX.csv`**: Daily & weekly CBOE Volatility Index (VIX rates).
+```math
+F = \frac{(SSE_1 - SSE_2) / (df_1 - df_2)}{SSE_2 / df_2}
+```
 
 ## Results
 
